@@ -4,24 +4,23 @@
     {
         static void Main(string[] args)
         {
-            var myMessage = new Message("Hello, World! Greetings from Message Object.");
+            Message myMessage = new Message("Hello, World! Greetings from Message Object.");
             myMessage.Print();
 
             string name = Console.ReadLine()!.ToLower();
-            string[] knownNames = new string[] { "faisal", "walima", "mathew", "james", "peter"};
             
             
-            var faisalMsg = new Message("Hi Faisal, how are you?");
-            var walimalMsg = new Message("Hi Walima, how are you?");
-            var mathewMsg = new Message("Hi Mathew, how are you?");
-            var jamesMsg = new Message("Hi James, how are you?");
-            var peterMsg = new Message("Hi Peter, how are you?");
-            var defaultMsg = new Message("Welcome, nice to me you.");
+            Message faisalMsg = new Message("Hi Faisal, how are you?");
+            Message mathewMsg = new Message("Hi Mathew, how are you?");
+            Message walimalMsg = new Message("Hi Walima, how are you?");
+            Message jamesMsg = new Message("Hi James, how are you?");
+            Message peterMsg = new Message("Hi Peter, how are you?");
+            Message defaultMsg = new Message("Welcome, nice to me you.");
 
             if (name == "faisal")
             {
                 faisalMsg.Print();
-            }else if(name == "Walima")
+            }else if(name == "walima")
             {
                 walimalMsg.Print();
             }else if (name == "mathew")
