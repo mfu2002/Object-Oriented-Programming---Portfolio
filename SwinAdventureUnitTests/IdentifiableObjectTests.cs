@@ -4,10 +4,6 @@ namespace SwinAdventureUnitTests
 {
     public class IdentifiableObjectTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
 
         [TestCase("fred")]
         [TestCase("bob")]
@@ -44,7 +40,7 @@ namespace SwinAdventureUnitTests
         public void TestFirstId()
         {
             IdentifiableObject identifiableObject = new IdentifiableObject(["Fred", "Bob"]);
-            Assert.That(identifiableObject.FirstId, Is.EqualTo("fred"));
+            Assert.That(identifiableObject.FirstId, Is.EqualTo("Fred"));
         }
         [Test]
         public void TestFirstIdWithNoIds()

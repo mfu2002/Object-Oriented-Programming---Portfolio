@@ -26,18 +26,21 @@ namespace SwinAdventureCaseStudy
         public IdentifiableObject(IEnumerable<string> idents)
         {
 
-            IEnumerable<string> lowercaseIdents = idents.Select(ident => ident.ToLower());
-            _identifiers.AddRange(lowercaseIdents);
+            _identifiers.AddRange(idents);
         }
 
         public bool AreYou(string id)
         {
-            return _identifiers.Contains(id.ToLower());
+            foreach (string _id in _identifiers)
+            {
+                if (_id.ToLower() == id.ToLower()) return true;
+            }
+            return false;
         }
 
         public void AddIdentifier(string id)
         {
-            _identifiers.Add(id.ToLower());
+            _identifiers.Add(id);
         }
 
     }
