@@ -7,15 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1-2Message", "1-2Message\1-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1-1Average", "1-1Average\1-1Average.csproj", "{8F987825-4E3F-49EE-983D-770A4D6B7871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-1NUitSetup", "2-1NUitSetup\2-1NUitSetup.csproj", "{62038274-5799-4FEF-9CED-C920146A9AD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-1NUitSetup", "2-1NUitSetup\2-1NUitSetup.csproj", "{62038274-5799-4FEF-9CED-C920146A9AD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-1TestQueue", "2-1TestQueue\2-1TestQueue.csproj", "{89BEAED1-923C-4759-A1BE-D8B818C77E4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-1TestQueue", "2-1TestQueue\2-1TestQueue.csproj", "{89BEAED1-923C-4759-A1BE-D8B818C77E4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-1DemoWriteline", "2-1DemoWriteline\2-1DemoWriteline.csproj", "{1DFF3598-BC33-48FD-8E49-9AF9643E68B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-1DemoWriteline", "2-1DemoWriteline\2-1DemoWriteline.csproj", "{1DFF3598-BC33-48FD-8E49-9AF9643E68B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-2CounterTask", "2-2Counter\2-2CounterTask.csproj", "{DC24CEF3-6C94-476E-9EF2-9796FE4EA224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-2CounterTask", "2-2Counter\2-2CounterTask.csproj", "{DC24CEF3-6C94-476E-9EF2-9796FE4EA224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-3SplashkitBasicShape", "2-3SplashkitBasicShape\2-3SplashkitBasicShape.csproj", "{71727BBE-913A-4324-AF1B-07A90C53B9A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-3SplashkitBasicShape", "2-3SplashkitBasicShape\2-3SplashkitBasicShape.csproj", "{71727BBE-913A-4324-AF1B-07A90C53B9A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwinAdventureCaseStudy", "SwinAdventureCaseStudy\SwinAdventureCaseStudy.csproj", "{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwinAdventureUnitTests", "SwinAdventureUnitTests\SwinAdventureUnitTests.csproj", "{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{71727BBE-913A-4324-AF1B-07A90C53B9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71727BBE-913A-4324-AF1B-07A90C53B9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71727BBE-913A-4324-AF1B-07A90C53B9A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
