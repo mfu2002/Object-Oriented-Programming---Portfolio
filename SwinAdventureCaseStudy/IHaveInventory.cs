@@ -10,5 +10,7 @@ namespace SwinAdventureCaseStudy
     {
         public GameObject? Locate(string id);
         public string Name { get; }
+
+        public Inventory Inventory { get; }
     }
 }

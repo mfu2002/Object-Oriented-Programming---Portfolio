@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace SwinAdventureCaseStudy
 {
-    public class MoveCommand : Command
+    public class MoveCommand() : Command(["move", "go", "head", "leave"])
     {
-        public MoveCommand() : base(["move", "go", "head", "leave"])
-        {
-        }
+        
 
         public override string Execute(Player p, string[] text)
         {

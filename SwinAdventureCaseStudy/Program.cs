@@ -17,7 +17,7 @@ namespace SwinAdventureCaseStudy
         private static void StartGame(Player player)
         {
             string? userCommandInput;
-            LookCommand lookCommand = new LookCommand();
+            CommandProcessor commandProcessor = new CommandProcessor();
 
             do
             {
@@ -25,7 +25,7 @@ namespace SwinAdventureCaseStudy
                 userCommandInput = Console.ReadLine();
                 if(!string.IsNullOrEmpty(userCommandInput))
                 {
-                    Console.WriteLine(lookCommand.Execute(player, userCommandInput.Split()));
+                    Console.WriteLine(commandProcessor.Execute(player, userCommandInput.Split()));
                 }
 
             } while (userCommandInput != "quit");
