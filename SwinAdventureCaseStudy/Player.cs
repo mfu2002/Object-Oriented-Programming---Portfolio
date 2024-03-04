@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 
 namespace SwinAdventureCaseStudy
 {
-    public class Player : GameObject
+    public class Player : GameObject, IHaveInventory
     {
         private Inventory _inventory = new Inventory();
+        public Location Location { get; set; }
 
-        public Player(string name, string desc) : base(["me", "inventory"], name, desc)
+        public Player(string name, string desc, Location location) : base(["me", "inventory"], name, desc)
         {
+            Location = location;
         }
 
         public GameObject? Locate(string id)
         {
             if (AreYou(id)) { return this; }
-            return _inventory.Fetch(id);
+            GameObject? inventoryItem = _inventory.Fetch(id);
+            if (inventoryItem != null) { return inventoryItem; }
+            return Location.Locate(id);
         }
-        public override string FullDescription => $"You are {Name} {ShortDescription}.\nYou are carrying\n{_inventory.ItemList}";
+        public override string FullDescription => $"You are {Name} the {base.FullDescription}.\nYou are carrying\n{_inventory.ItemList}";
 
         public Inventory Inventory => _inventory;
     }

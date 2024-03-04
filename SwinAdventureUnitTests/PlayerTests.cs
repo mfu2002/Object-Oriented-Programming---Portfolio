@@ -18,7 +18,9 @@ namespace SwinAdventureUnitTests
         [SetUp]
         public void SetUp()
         {
-            _player = new Player("Faisal", "an amazing programmer");
+            Location startLocation = new Location(["Hallway"], "Hallway", "This is a long well lit hallway.");
+
+            _player = new Player("Faisal", "amazing programmer", startLocation);
             _inventoryItems = [
                 new Item(["Hammer"], "Hammer", "A kids hammer"),
                 new Item(["Car", "Toy"], "Toy Car", "A kids toy car")
@@ -62,7 +64,7 @@ namespace SwinAdventureUnitTests
         [Test]
         public void TestFullDescription()
         {
-            Assert.That(_player.FullDescription, Is.EqualTo($"You are {_player.Name} {_player.ShortDescription}.\nYou are carrying\n{_player.Inventory.ItemList}"));
+            Assert.That(_player.FullDescription, Is.EqualTo($"You are {_player.Name} the amazing programmer.\nYou are carrying\n{_player.Inventory.ItemList}"));
         }
     }
 }
