@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Path = SwinAdventureCaseStudy.Path;
 
 namespace SwinAdventureUnitTests
 {
@@ -22,7 +23,9 @@ namespace SwinAdventureUnitTests
         [Test]
         public void TestFullDescription()
         {
-            Assert.That(_location.FullDescription, Is.EqualTo($"You are in the Hallway\nThis is a long well lit hallway.\nThere are exists to the south.\nIn this room you can see:\n{_location.Inventory.ItemList}"));
+            Location nextLoc = new Location(["room"], "small room", "a mouldy old room");
+            _location.Paths.Add(new Path(["south", "s"], "south", "You go through a small door", nextLoc));
+            Assert.That(_location.FullDescription, Is.EqualTo($"You are in the Hallway\nThis is a long well lit hallway.\nThere are exits to the south.\nIn this room you can see:\n{_location.Inventory.ItemList}"));
         }
 
         [TestCase("Hallway")]

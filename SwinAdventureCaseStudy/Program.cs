@@ -41,6 +41,13 @@ namespace SwinAdventureCaseStudy
             startLocation.Inventory.Put(wallet);
             startLocation.Inventory.Put(new Item(["pickaxe", "tool"], "Pickaxe", "iron pickaxe"));
             startLocation.Inventory.Put(new Item(["helmet"], "Safety Helmet", "yellow safety helmet to be used in the mines."));
+
+            Location loc1 = new Location(["Closet"], "closet", "A small dark closet, with an odd smell.");
+            Location loc2 = new Location(["Garden"], "small garden", "There are many small shrubs and flowers growing from well tended garden bed.");
+            startLocation.Paths.Add(new Path(["North-East", "ne"], "North-East", "You go through a door.", loc1));
+            startLocation.Paths.Add(new Path(["South-West", "sw"], "South-West", "You travel through a small door, and then crawl a few meters before arriving from the north.", loc2));
+
+
             return startLocation;
         }
 
