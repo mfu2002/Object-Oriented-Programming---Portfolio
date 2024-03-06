@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-1-Clock", "3-1-Clock\3-1-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-1ClockUnitTests", "3-1ClockUnitTests\3-1ClockUnitTests.csproj", "{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-3DrawingClass", "3-3DrawingClass\3-3DrawingClass.csproj", "{B3DF0EF3-A13D-4890-A3BE-02FDB7B28F80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3DF0EF3-A13D-4890-A3BE-02FDB7B28F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3DF0EF3-A13D-4890-A3BE-02FDB7B28F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3DF0EF3-A13D-4890-A3BE-02FDB7B28F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3DF0EF3-A13D-4890-A3BE-02FDB7B28F80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
