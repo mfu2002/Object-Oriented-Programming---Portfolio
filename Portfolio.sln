@@ -17,9 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-2CounterTask", "2-2Counte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-3SplashkitBasicShape", "2-3SplashkitBasicShape\2-3SplashkitBasicShape.csproj", "{71727BBE-913A-4324-AF1B-07A90C53B9A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwinAdventureCaseStudy", "SwinAdventureCaseStudy\SwinAdventureCaseStudy.csproj", "{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwinAdventureCaseStudy", "SwinAdventureCaseStudy\SwinAdventureCaseStudy.csproj", "{5CCF4A01-4042-4C10-A3E0-4DFBA4748B78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwinAdventureUnitTests", "SwinAdventureUnitTests\SwinAdventureUnitTests.csproj", "{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwinAdventureUnitTests", "SwinAdventureUnitTests\SwinAdventureUnitTests.csproj", "{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-1-Clock", "3-1-Clock\3-1-Clock.csproj", "{281E6041-3E33-4475-9DD1-1D7622AA78FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-1ClockUnitTests", "3-1ClockUnitTests\3-1ClockUnitTests.csproj", "{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,14 @@ Global
 		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCA5F259-C90D-46A3-A05C-9CBE4861DC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281E6041-3E33-4475-9DD1-1D7622AA78FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281E6041-3E33-4475-9DD1-1D7622AA78FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281E6041-3E33-4475-9DD1-1D7622AA78FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281E6041-3E33-4475-9DD1-1D7622AA78FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C2F2F6-0CCB-4A34-A87A-37E8C15BDE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
