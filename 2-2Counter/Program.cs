@@ -19,6 +19,8 @@ namespace _2_2CounterTask
                 myCounters[1].Increment();
             }
             PrintCounters(myCounters);
+            myCounters[0].Reset();
+            PrintCounters(myCounters);
         }
 
         static void PrintCounters(IEnumerable<Counter> counters)
