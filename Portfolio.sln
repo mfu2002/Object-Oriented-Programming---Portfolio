@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-1ClockUnitTests", "3-1Clo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-3DrawingClass", "3-3DrawingClass\3-3DrawingClass.csproj", "{B3DF0EF3-A13D-4890-A3BE-02FDB7B28F80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomProject", "CustomProject\CustomProject.csproj", "{99A9ABAD-9721-4E16-A863-1A6756C074FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomProject", "CustomProject\CustomProject.csproj", "{99A9ABAD-9721-4E16-A863-1A6756C074FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4-1DrawProgramMultipleShapes", "4-1DrawProgramMultipleShapes\4-1DrawProgramMultipleShapes.csproj", "{1B8E9CAA-8B36-423E-ABFF-4C56F99FA147}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{99A9ABAD-9721-4E16-A863-1A6756C074FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99A9ABAD-9721-4E16-A863-1A6756C074FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99A9ABAD-9721-4E16-A863-1A6756C074FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B8E9CAA-8B36-423E-ABFF-4C56F99FA147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B8E9CAA-8B36-423E-ABFF-4C56F99FA147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8E9CAA-8B36-423E-ABFF-4C56F99FA147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8E9CAA-8B36-423E-ABFF-4C56F99FA147}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
