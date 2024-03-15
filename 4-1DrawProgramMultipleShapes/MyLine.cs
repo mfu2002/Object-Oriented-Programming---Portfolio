@@ -39,6 +39,7 @@ namespace _4_1DrawProgramMultipleShapes
             Y = startY;
             EndX = endX;
             EndY = endY;
+
                 
         }
 
@@ -59,10 +60,19 @@ namespace _4_1DrawProgramMultipleShapes
 
         public override bool IsAt(Point2D point)
         {
-            float slope = (Y - EndY) / (X - EndX);
-            float c = Y - slope * X;  // Rearrange Y = mx +C
+            Point2D startPoint = new Point2D();
+            startPoint.X = X; 
+            startPoint.Y = Y;
 
-            return Math.Abs(point.Y - (int)(slope * point.X + c)) <= 2;
+            Point2D endPoint = new Point2D();
+            endPoint.X = EndX;
+            endPoint.Y = EndY;
+
+            Line line = new Line();
+            line.StartPoint = startPoint;
+            line.EndPoint = endPoint;
+
+            return SplashKit.PointOnLine(point, line);
 
         }
     }
