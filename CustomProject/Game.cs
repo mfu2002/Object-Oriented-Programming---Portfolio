@@ -10,20 +10,39 @@ namespace CustomProject
 
 
         public static readonly byte TILE_WIDTH = 50;
+        private Sprite _heartSprite = new Sprite("heart10x10.png");
 
 
         private int _money = 100;
         private readonly List<DrawInstructions> _drawInstructions = new List<DrawInstructions>();
         private long _lastUpdateTime = DateTime.Now.Ticks;
 
-        private EnemyProcessor _enemyGenerator;
+        private EnemyCommander _enemyGenerator;
 
-        public EnemyProcessor EnemyGenerator
+        public EnemyCommander EnemyGenerator
         {
             get { return _enemyGenerator; }
             set { _enemyGenerator = value; }
         }
 
+
+        private int _lives = 3;
+
+        public int Lives
+        {
+            get { return _lives; }
+            set
+            {
+                if (value < 0)
+                {
+                    _lives = 0;
+                }
+                else
+                {
+                    _lives = value;
+                }
+            }
+        }
 
 
         private Map _map;
@@ -43,33 +62,23 @@ namespace CustomProject
 
 
 
-        public Game()
+        public Game(int[,] mapSchema)
         {
-            int[,] mapSchema = {
-                    { 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1 },
-                    {1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                    {1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                    {1, 1, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
-                    {1, 1, 0, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 1, 0, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 1, 0, 1, 1, 1,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 1, 0, 1, 1, 1,0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1},
-                    {1, 1, 0, 1, 1, 1,0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1},
-                    {1, 1, 0, 1, 1, 1,0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1},
-                    {1, 1, 0, 0, 0, 0,0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1},
-                    {1, 1, 1, 1, 1, 1,1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1},
-                    {1, 1, 1, 1, 1, 1,1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 1, 1, 1, 1, 1,1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 1, 1, 1, 1, 1,1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1},
 
+            _map = new Map(mapSchema);
+            _enemyGenerator = new EnemyCommander(mapSchema);
+            AttachEnemiesToTower();
 
-            };
-
-            Grid = new Map(mapSchema);
-
-
-            EnemyGenerator = new EnemyProcessor(mapSchema);
-
+        }
+        private void AttachEnemiesToTower()
+        {
+            foreach (var tile in Grid.Grid)
+            {
+                if (tile is ConstructableTile constructableTile)
+                {
+                    constructableTile.Tower = new DefenceTower(constructableTile.Location + new Vector2(TILE_WIDTH, TILE_WIDTH) / 2, EnemyGenerator.Enemies);
+                }
+            }
         }
 
         public void HandleKeyInput()
@@ -81,37 +90,14 @@ namespace CustomProject
 
             if (Grid.SelectedTile is ConstructableTile constructableTile)
             {
-
-                if (constructableTile.Tower == null)
-                {
-                    if (SplashKit.KeyTyped(KeyCode.SpaceKey))
-                    {
-                        constructableTile.Tower = new DefenceTower(constructableTile.Location + new Vector2(TILE_WIDTH, TILE_WIDTH) / 2, EnemyGenerator.Enemies);
-
-                    }
-                }
-                else
-                {
-                    if (SplashKit.KeyTyped(KeyCode.AKey))
-                    {
-
-                        // do something
-                    }else if (SplashKit.KeyTyped(KeyCode.SKey))
-                    {
-                        // do something else
-                    }
-                    else if (SplashKit.KeyTyped(KeyCode.DKey))
-                    {
-                        // do something else
-                    }
-                }
+                Money -= constructableTile.Tower.HandleUserInput(Money);
             }
         }
-      
+
 
         public void Start()
         {
-            Window window = new Window("Game", 850, 750);
+            Window window = new Window("Game", TILE_WIDTH * Grid.Grid.GetLength(1), TILE_WIDTH * Grid.Grid.GetLength(0));
 
             do
             {
@@ -127,21 +113,35 @@ namespace CustomProject
 
         public void Update()
         {
+            if (Lives == 0) { _lastUpdateTime = DateTime.Now.Ticks; }
             float deltaTime = (DateTime.Now.Ticks - _lastUpdateTime) / 10000000f;
-
             Grid.Update(deltaTime);
             EnemyGenerator.Update(deltaTime);
-            
-
-
+            Money += EnemyGenerator.TakeReward();
+            Lives -= EnemyGenerator.CheckVictoriousEnemies();
             _lastUpdateTime = DateTime.Now.Ticks;
 
         }
 
+        private void GetHUDInstructions(List<DrawInstructions> instructions)
+        {
+
+            instructions.Add(new DrawInstructions(() => {
+                SplashKit.DrawText($"${Money}", Color.Black, 10, 10);
+                int horizontalOffset = 100;
+                for (int i = 0; i< Lives; i++)
+                {
+                    SplashKit.DrawSprite(_heartSprite, SplashKit.ScreenWidth() - horizontalOffset, 10);
+                    horizontalOffset -= 25;
+                }
+            }
+            , 10));
+        }
 
         public void Render()
         {
 
+            GetHUDInstructions(_drawInstructions);
 
             Grid.GetDrawInstructions(_drawInstructions);
             EnemyGenerator.GetDrawInstructions(_drawInstructions);
@@ -155,6 +155,10 @@ namespace CustomProject
             }
             _drawInstructions.Clear();
 
+            if (Lives == 0)
+            {
+                SplashKit.DrawText("GAME OVER", Color.Black, SplashKit.ScreenWidth()/2, SplashKit.ScreenHeight()/2);
+            }
         }
 
 

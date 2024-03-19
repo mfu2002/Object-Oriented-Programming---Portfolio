@@ -5,24 +5,44 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-
+using CustomProject.Foe;
+using System.Reflection.Metadata.Ecma335;
 namespace CustomProject
 {
     public class DefenceTower : GameObject
     {
-        private int _attackStrength = 1;
+        private float _attackStrength;
         private float _cooldown;
         private List<Enemy> _enemies;
-        private IEnumerable<Enemy> targets;
+        private IEnumerable<Enemy>? targets;
+        private float _attackSpeed;
 
-        private float _range = 1.5f;
+        private float upgradeRangeIncrement = 1.5f;
+        private float upgradeStrengthIncrement = 10f;
+        private float upgradeSpeedIncrement = 10f;
+        private int upgradeLaserCapacityIncrement = 1;
 
-        private int _laserCapacity = 1;
+        public int UpgradeLaserCapacityIncrement { get { return upgradeLaserCapacityIncrement; } }
+        public float UpgradeSpeedIncrement { get { return upgradeSpeedIncrement; } }
+        public float UpgradeStrengthIncrement { get { return upgradeStrengthIncrement; } }
+        public float UpgradeRangeIncrement { get { return upgradeRangeIncrement; } }
+
+
+        private float _range;
+
+        private int _laserCapacity;
 
         public int LaserCapacity
         {
             get { return _laserCapacity; }
-            set { _laserCapacity = value; }
+        }
+
+        private bool _built;
+
+        public bool Built
+        {
+            get { return _built; }
+            set { _built = value; }
         }
 
 
@@ -30,47 +50,100 @@ namespace CustomProject
         public float Range
         {
             get { return _range; }
-            set { _range = value; }
         }
 
 
-        public int AttackStrength
+        public float AttackStrength
         {
             get { return _attackStrength; }
-            set { _attackStrength = value; }
         }
 
-        private int _attackDelay = 1;
 
-        public int AttackDelay
+        public float AttackSpeed
         {
-            get { return _attackDelay; }
-            set { _attackDelay = value; }
+            get { return _attackSpeed; }
         }
 
         public DefenceTower(Vector2 location, List<Enemy> enemies)
         {
             Location = location;
-            _enemies =  enemies;
+            _enemies = enemies;
 
         }
 
-        
+        private int _level;
+
+        public int Level
+        {
+            get { return _level; }
+        }
+
+
+        public int UpgradeCost
+        {
+            get { return Level * 30; }
+        }
+
+
+        private int Upgrade()
+        {
+            int cost = UpgradeCost;
+            _range += upgradeRangeIncrement;
+            _attackStrength += upgradeStrengthIncrement;
+            _attackSpeed += upgradeSpeedIncrement;
+            _laserCapacity += upgradeLaserCapacityIncrement;
+            _level += 1;
+            if (Level % 5 == 0)
+            {
+                upgradeLaserCapacityIncrement = 1;
+
+            }
+            else
+            {
+                upgradeLaserCapacityIncrement = 0;
+            }
+            if (!Built)
+            {
+                Built = true;
+                upgradeRangeIncrement = 0.2f;
+                upgradeStrengthIncrement = 1f;
+                upgradeSpeedIncrement = 2;
+
+                return 50;
+            }
+            return cost;
+        }
+
+
+        public int HandleUserInput(int money)
+        {
+            if (money < UpgradeCost) { return 0; }
+
+            if (SplashKit.KeyTyped(KeyCode.SpaceKey))
+            {
+
+                return Upgrade();
+
+            }
+            return 0;
+        }
+
 
         public void Attack()
         {
             if (_cooldown > 0) { return; }
-            targets = _enemies.Where((enemy) =>(enemy.GridLocation - GridLocation).LengthSquared() < Range).Take(LaserCapacity);
+            targets = _enemies.Where((enemy) => (enemy.GridLocation - GridLocation).LengthSquared() < Range).Take(LaserCapacity);
             foreach (Enemy enemyWithinRange in targets)
             {
                 enemyWithinRange.DealDamage(AttackStrength);
-                _cooldown = AttackDelay;
+                _cooldown = 1 / AttackSpeed;
             }
         }
 
 
         public override void Update(float deltaTime)
         {
+            if (!Built) { return; }
             _cooldown -= deltaTime;
             if (_cooldown < 0) _cooldown = 0;
             Attack();
@@ -78,11 +151,17 @@ namespace CustomProject
 
         public override void GetDrawInstructions(List<DrawInstructions> drawInstructions)
         {
-            drawInstructions.Add(new DrawInstructions(() => SplashKit.FillCircle(Color.Pink, Location.X, Location.Y, 20), 3));
-            foreach (Enemy target in targets)
+            drawInstructions.Add(new DrawInstructions(() =>
             {
-                drawInstructions.Add(new DrawInstructions(() => SplashKit.DrawLine(Color.Red, Location.X, Location.Y, target.Location.X, target.Location.Y), 3));
+                SplashKit.FillCircle(Color.Pink, Location.X, Location.Y, 20);
+            }, 3));
+            if (targets != null)
+            {
+                foreach (Enemy target in targets!)
+                {
+                    drawInstructions.Add(new DrawInstructions(() => SplashKit.DrawLine(Color.Red, Location.X, Location.Y, target.Location.X, target.Location.Y), 3));
 
+                }
             }
 
         }
