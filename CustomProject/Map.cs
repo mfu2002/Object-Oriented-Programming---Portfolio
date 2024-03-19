@@ -53,24 +53,24 @@ namespace CustomProject
                 for (int col = 0; col < mapSchema.GetLength(1); col++)
                 {
                     Tile tile;
+                    Vector2 tileLoc = new Vector2(col, row) * Game.TILE_WIDTH;
                     if (mapSchema[row, col] == 0)
                     {
-                        tile = new PathTile();
+                        tile = new PathTile(tileLoc);
 
                     }
                     else if (mapSchema[row, col] == 1)
                     {
-                        tile = new ConstructableTile();
+                        tile = new ConstructableTile(tileLoc);
                     }
                     else if (mapSchema[row, col] == -1)
                     {
-                        tile = new BlockedTile();
+                        tile = new BlockedTile(tileLoc);
                     }
                     else
                     {
                         throw new Exception("Invalid Tile");
                     }
-                    tile.Location = new Vector2(col, row) * Game.TILE_WIDTH;
                     Grid[row, col] = tile;
                 }
             }
@@ -83,14 +83,7 @@ namespace CustomProject
             {
                 tile.Update(deltaTime);
             }
-            HandleKeyInput();
         }
-
-        public void HandleKeyInput()
-        {
-           
-        }
-
 
 
         public void GetDrawInstructions(List<DrawInstructions> instructions)

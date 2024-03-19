@@ -17,9 +17,10 @@ namespace CustomProject
 
 
         private const int BORDER_WIDTH = 2;
-        protected Tile(Color color)
+        protected Tile(Color color, Vector2 loc)
         {
             _groundColor = color;
+            Location = loc;
         }
 
 
