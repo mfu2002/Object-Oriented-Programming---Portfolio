@@ -16,15 +16,11 @@ namespace SwinAdventureUnitTests
         public void SetUp()
         {
             _command = new LookCommand();
-            Location startLocation = new Location(["Hallway"], "Hallway", "This is a long well lit hallway.");
 
             Bag wallet = new Bag(["wallet"], "wallet", "wornout leather wallet");
             wallet.Inventory.Put(new Item(["photo"], "Photo", "Torn photo of a young woman"));
             wallet.Inventory.Put(new Item(["cash", "money"], "$10 note", "dirty $10 note"));
-            startLocation.Inventory.Put(wallet);
-            startLocation.Inventory.Put(new Item(["pickaxe", "tool"], "Pickaxe", "iron pickaxe"));
-            startLocation.Inventory.Put(new Item(["helmet"], "Safety Helmet", "yellow safety helmet to be used in the mines."));
-            _player = new Player("Faisal", "the amazing programmer", startLocation);
+            _player = new Player("Faisal", "the amazing programmer");
             _player.Inventory.Put(new Item(["gem", "ruby"], "ruby", "A big, red ruby"));
             _player.Inventory.Put(new Item(["diamond"], "diamond", "A big, shiny diamond"));
 
@@ -32,11 +28,6 @@ namespace SwinAdventureUnitTests
             bag.Inventory.Put(new Item(["book"], "Mining Economics Explained", "A book on mining"));
             _player.Inventory.Put(bag);
 
-        }
-        [Test]
-        public void TestLook()
-        {
-            Assert.That(_command.Execute(_player, ["look"]), Is.EqualTo(_player.Location.FullDescription));
         }
 
         [Test]
@@ -97,32 +88,6 @@ namespace SwinAdventureUnitTests
             Assert.That(_command.Execute(_player, command), Is.EqualTo($"I can't find the {item} in the sack")); // TODO: check with changed requirements. 
         }
 
-        [TestCase("pickaxe")]
-        [TestCase("tooL")]
-        [TestCase("heLmet")]
-        public void TestLookAtItemInRoom(string item)
-        {
-            string[] command = $"Look at {item}".Split();
-            Assert.That(_command.Execute(_player, command), Is.EqualTo(_player.Location.Inventory.Fetch(item)!.FullDescription));
-        }
-
-        [TestCase("photo")]
-        [TestCase("cash")]
-        public void TestLookAtItemInBagInRoom(string item)
-        {
-            string[] command = $"Look at {item} in wallet".Split();
-            Bag? bag = _player.Location.Inventory.Fetch("wallet") as Bag;
-            Assert.That(_command.Execute(_player, command), Is.EqualTo(bag!.Inventory.Fetch(item)!.FullDescription));
-        }
-
-        [TestCase("card")]
-        [TestCase("note")]
-        [TestCase("keys")]
-        public void TestLookAtNoItemInBagInRoom(string item)
-        {
-            string[] command = $"Look at {item} in wallet".Split();
-            Assert.That(_command.Execute(_player, command), Is.EqualTo($"I can't find the {item} in the wallet")); // TODO: check with changed requirements.
-        }
 
         [TestCase("Look around")]
         [TestCase("Look here and there")]
