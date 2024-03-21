@@ -17,7 +17,7 @@ namespace SwinAdventureUnitTests
         {
             _command = new LookCommand();
             Location startLocation = new Location(["Hallway"], "Hallway", "This is a long well lit hallway.");
-            
+
             Bag wallet = new Bag(["wallet"], "wallet", "wornout leather wallet");
             wallet.Inventory.Put(new Item(["photo"], "Photo", "Torn photo of a young woman"));
             wallet.Inventory.Put(new Item(["cash", "money"], "$10 note", "dirty $10 note"));
