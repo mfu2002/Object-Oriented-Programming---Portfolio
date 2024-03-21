@@ -12,6 +12,7 @@ namespace CustomProject
     {
         private Vector2[,] _directions;
         private (int, int)? _entryPoint = null;
+        private (int, int)? _exitPoint = null;
         private int[,] _map;
 
         public (int, int) EntryPoint
@@ -24,7 +25,7 @@ namespace CustomProject
                     {
                         if (_map[0, i] == 0)
                         {
-                            _entryPoint =(0,i);
+                            _entryPoint =(i,0);
                             break;
                         }
                     }
@@ -37,7 +38,30 @@ namespace CustomProject
             }
         }
 
-        private bool IsValidMove(int[,] grid, bool[,] visited, int row, int col, int total_rows, int total_columns)
+        public (int, int) ExitPoint
+        {
+            get
+            {
+                if (_exitPoint == null)
+                {
+                    int lastRow = _map.GetLength(0) - 1;
+                    for (int i = 0; i < _map.GetLength(1); i++)
+                    {
+                        if (_map[lastRow, i] == 0)
+                        {
+                            _exitPoint = (i, lastRow);
+                            break;
+                        }
+                    }
+                }
+                if (_exitPoint == null)
+                {
+                    throw new Exception("Exit point not found.");
+                }
+                return ((int, int))_exitPoint;
+            }
+        }
+        private static bool IsValidMove(int[,] grid, bool[,] visited, int row, int col, int total_rows, int total_columns)
         {
             return row >= 0 && row < total_rows     // within x bounds
                 && col >= 0 && col < total_columns  // within y bounds
@@ -47,7 +71,7 @@ namespace CustomProject
 
         public Vector2 GetDirection(int x, int y)
         {
-            return _directions[y, x];
+            return _directions[y,x];
         }
 
         public PathFinder(int[,] grid)
@@ -65,7 +89,7 @@ namespace CustomProject
 
             Queue<(int, int)> queue = new Queue<(int, int)>();
             queue.Enqueue(EntryPoint);
-            visited[EntryPoint.Item1,EntryPoint.Item2] = true;
+            visited[EntryPoint.Item2,EntryPoint.Item1] = true;
 
             _directions = new Vector2[rows, columns];
 
@@ -77,7 +101,7 @@ namespace CustomProject
                 ];
             while (queue.Count > 0)
             {
-                var (row, col) = queue.Dequeue();
+                var (col, row) = queue.Dequeue();
 
 
 
@@ -89,7 +113,7 @@ namespace CustomProject
                     if(IsValidMove(_map, visited, newRow, newCol, rows, columns))
                     {
                         visited[newRow, newCol] = true;
-                        queue.Enqueue((newRow, newCol));
+                        queue.Enqueue((newCol, newRow));
                         _directions[row, col] = direction;
                     }
                 }

@@ -7,30 +7,26 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomProject
+namespace CustomProject.Foe
 {
-    public class Enemy : GameObject
+    public abstract class Enemy : GameObject
     {
-        private int _initialHealth = 5;
-        private int _health = 5;
+        private float _initialHealth;
+        private float _health;
+        private int _reward;
+        private float _speedFactor;
 
-        private int _level = 1;
+        private Vector2 _direction = new Vector2(0, 1);
 
         private Vector2 _targetTile;
 
-        public int Level
-        {
-            get { return _level; }
-            set { _level = value; }
-        }
 
-        public int Health
+        public float Health
         {
             get { return _health; }
             set { _health = value; }
         }
 
-        private int _reward = 10;
 
         public int Reward
         {
@@ -39,15 +35,13 @@ namespace CustomProject
         }
 
 
-        private int _speedFactor = 20;
 
-        public int SpeedFactor
+        public float SpeedFactor
         {
             get { return _speedFactor; }
             set { _speedFactor = value; }
         }
 
-        private Vector2 _direction = new Vector2(0, 1);
 
         public Vector2 Direction
         {
@@ -68,11 +62,12 @@ namespace CustomProject
             }
         }
 
-
-        public void UpgradeSpeed()
+        protected Enemy(float health, float speed, int reward)
         {
-            SpeedFactor += 10;
-            Reward += 10;
+            _initialHealth = health;
+            _health = health;
+            _speedFactor = speed;
+            _reward = reward;
         }
 
         public void Navigate(PathFinder pathFinder)
@@ -97,8 +92,6 @@ namespace CustomProject
 
         public override void GetDrawInstructions(List<DrawInstructions> instructions)
         {
-            instructions.Add(new DrawInstructions(() => SplashKit.FillCircle(Color.Red, Location.X, Location.Y, 10), 2));
-
             if(Health < _initialHealth)
             {
                 instructions.Add(new DrawInstructions(() =>
@@ -114,7 +107,7 @@ namespace CustomProject
         }
 
 
-        public void DealDamage(int damage)
+        public void DealDamage(float damage)
         {
             Health -= damage;
         }
