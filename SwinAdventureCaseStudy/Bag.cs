@@ -21,6 +21,5 @@ namespace SwinAdventureCaseStudy
 
         public override string FullDescription => $"In the {Name} you can see:\n{_inventory.ItemList}";
 
-
     }
 }

@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomProject", "CustomProj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4-1DrawProgramMultipleShapes", "4-1DrawProgramMultipleShapes\4-1DrawProgramMultipleShapes.csproj", "{1B8E9CAA-8B36-423E-ABFF-4C56F99FA147}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5-3DrawingProgram", "5-3DrawingProgram\5-3DrawingProgram.csproj", "{B4C6F6B6-113B-4CA6-9332-0B9D7FC298E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5-3DrawingProgram", "5-3DrawingProgram\5-3DrawingProgram.csproj", "{B4C6F6B6-113B-4CA6-9332-0B9D7FC298E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -81,6 +81,7 @@ namespace CustomProject
             }
         }
 
+
         public void HandleKeyInput()
         {
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
@@ -117,7 +118,7 @@ namespace CustomProject
             float deltaTime = (DateTime.Now.Ticks - _lastUpdateTime) / 10000000f;
             Grid.Update(deltaTime);
             EnemyGenerator.Update(deltaTime);
-            Money += EnemyGenerator.TakeReward();
+            Money += EnemyGenerator.CheckDeadEnemies();
             Lives -= EnemyGenerator.CheckVictoriousEnemies();
             _lastUpdateTime = DateTime.Now.Ticks;
 

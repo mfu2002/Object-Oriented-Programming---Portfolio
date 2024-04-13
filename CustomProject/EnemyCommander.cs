@@ -18,13 +18,7 @@ namespace CustomProject
         private int _toopCount = 7;
 
         private readonly List<Enemy> _enemies = new List<Enemy>();
-        private int _unclaimedReward;
 
-        public int UnclaimedReward
-        {
-            get { return _unclaimedReward; }
-            set { _unclaimedReward = value; }
-        }
 
 
         public List<Enemy> Enemies
@@ -39,12 +33,7 @@ namespace CustomProject
             _pathFinder = new PathFinder(mapSchema);
         }
 
-        public int TakeReward()
-        {
-            int reward = UnclaimedReward;
-            UnclaimedReward = 0;
-            return reward;
-        }
+
 
         public void GetDrawInstructions(List<DrawInstructions> instructions)
         {
@@ -54,17 +43,18 @@ namespace CustomProject
             }
         }
 
-        private void HandleDeadEnemies(float deltaTime)
+        public int CheckDeadEnemies()
         {
+            int unclaimedReward = 0;
             IEnumerable<Enemy> deadEnemies = Enemies.Where((enemy) => enemy.Health <= 0);
 
             foreach (Enemy enemy in deadEnemies)
             {
-                UnclaimedReward += enemy.Reward;
+                unclaimedReward += enemy.Reward;
             }
 
             Enemies.RemoveAll((enemy) => enemy.Health <= 0);
-
+            return unclaimedReward;
         }
 
         public int CheckVictoriousEnemies()
@@ -109,7 +99,6 @@ namespace CustomProject
             _cooldown -= deltaTime;
             if (_cooldown < 0) { _cooldown = 0; }
 
-            HandleDeadEnemies(deltaTime);
             UpdateEnemies(deltaTime);
             CreateEnemies();
 

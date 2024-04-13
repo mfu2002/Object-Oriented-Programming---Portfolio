@@ -13,9 +13,6 @@ namespace CustomProject
     {
         private Color _groundColor;
         
-
-
-
         private const int BORDER_WIDTH = 2;
         protected Tile(Color color, Vector2 loc)
         {

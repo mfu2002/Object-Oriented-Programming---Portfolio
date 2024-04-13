@@ -58,7 +58,7 @@ namespace _5_3DrawingProgram
                 for (int i = 0; i < count; i++)
                 {
                     string kind = reader.ReadLine();
-                    Shape s = null;
+                    Shape? s = null;
                     switch (kind)
                     {
                         case "Rectangle":
