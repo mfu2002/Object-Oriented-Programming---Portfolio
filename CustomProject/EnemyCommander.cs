@@ -1,39 +1,18 @@
 ﻿using CustomProject.Foe;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject
 {
-    internal class EnemyCommander : IDraw
+    internal class EnemyCommander(int[,] mapSchema) : IDraw
     {
 
-        private PathFinder _pathFinder;
+        private readonly PathFinder _pathFinder = new PathFinder(mapSchema);
         private int _stage = 0;
         private float _cooldown = 5;
         private float _delay = 10;
         private int _toopCount = 7;
 
-        private readonly List<Enemy> _enemies = new List<Enemy>();
-
-
-
-        public List<Enemy> Enemies
-        {
-            get { return _enemies; }
-        }
-
-
-
-        public EnemyCommander(int[,] mapSchema)
-        {
-            _pathFinder = new PathFinder(mapSchema);
-        }
-
-
+        public List<Enemy> Enemies { get; } = [];
 
         public void GetDrawInstructions(List<DrawInstructions> instructions)
         {
@@ -60,7 +39,7 @@ namespace CustomProject
         public int CheckVictoriousEnemies()
         {
             int enemyCount = 0;
-            List<Enemy> victoryEnemies = new List<Enemy>();
+            List<Enemy> victoryEnemies = [];
 
             foreach (Enemy enemy in Enemies)
             {
@@ -87,7 +66,6 @@ namespace CustomProject
                 }
                 else
                 {
-
                     enemy.Navigate(_pathFinder);
                     enemy.Update(deltaTime);
                 }
@@ -117,12 +95,10 @@ namespace CustomProject
                 float varianceX = random.Next(80) / 100f + 0.1f;
                 float varianceY = random.Next(80) / 100f + 0.1f;
                 basicEnemy.Location = new Vector2((_pathFinder.EntryPoint.Item1 + varianceX) * Game.TILE_WIDTH, varianceY);
-                _enemies.Add(basicEnemy);
+                Enemies.Add(basicEnemy);
             }
-
             _toopCount += 7;
             _cooldown = _delay;
-
         }
     }
 }

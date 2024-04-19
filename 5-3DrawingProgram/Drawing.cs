@@ -1,27 +1,14 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _5_3DrawingProgram
 {
-    public class Drawing
+    public class Drawing(Color backgroundColor)
     {
-        private readonly List<Shape> _shapes;
-        private Color _color;
+        private readonly List<Shape> _shapes = [];
+        private Color _color = backgroundColor;
 
-        public Drawing() : this(Color.White)
-        {
+        public Drawing() : this(Color.White) { }
 
-        }
-        public Drawing(Color backgroundColor)
-        {
-            _shapes = new List<Shape>();
-            _color = backgroundColor;
-        }
         public List<Shape> SelectedShapes => _shapes.FindAll(shape => shape.Selected);
 
         public int ShapeCount => _shapes.Count;

@@ -7,10 +7,12 @@ namespace CustomProject
         {
 
             int[,] mapSchema;
-            if (args.Length == 1) {
+            if (args.Length == 1)
+            {
                 mapSchema = GetSchemaFromFile(args[0])!;
             }
-            else {
+            else
+            {
                 mapSchema = new int[,]{
                     { 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1 },
                     { 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
@@ -30,7 +32,7 @@ namespace CustomProject
                 };
             }
             new Game(mapSchema).Start();
-           
+
         }
 
         static int[,]? GetSchemaFromFile(string fileName)

@@ -8,8 +8,8 @@
             myMessage.Print();
 
             string name = Console.ReadLine()!.ToLower();
-            
-            
+
+
             Message faisalMsg = new Message("Hi Faisal, how are you?");
             Message mathewMsg = new Message("Hi Mathew, how are you?");
             Message walimalMsg = new Message("Hi Walima, how are you?");
@@ -20,19 +20,24 @@
             if (name == "faisal")
             {
                 faisalMsg.Print();
-            }else if(name == "walima")
+            }
+            else if (name == "walima")
             {
                 walimalMsg.Print();
-            }else if (name == "mathew")
+            }
+            else if (name == "mathew")
             {
-                mathewMsg.Print(); 
-            }else if (name == "james")
+                mathewMsg.Print();
+            }
+            else if (name == "james")
             {
                 jamesMsg.Print();
-            }else if (name == "peter")
+            }
+            else if (name == "peter")
             {
                 peterMsg.Print();
-            }else
+            }
+            else
             {
                 defaultMsg.Print();
             }

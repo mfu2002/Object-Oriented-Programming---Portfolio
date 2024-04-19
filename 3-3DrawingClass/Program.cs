@@ -1,4 +1,3 @@
-using System;
 using SplashKitSDK;
 
 namespace _3_3DrawingClass
@@ -29,7 +28,7 @@ namespace _3_3DrawingClass
                 {
                     myDrawing.Background = Color.Random();
                 }
-                if(SplashKit.KeyTyped(KeyCode.BackspaceKey) || SplashKit.KeyTyped(KeyCode.DeleteKey))
+                if (SplashKit.KeyTyped(KeyCode.BackspaceKey) || SplashKit.KeyTyped(KeyCode.DeleteKey))
                 {
                     foreach (Shape shape in myDrawing.SelectedShapes)
                     {

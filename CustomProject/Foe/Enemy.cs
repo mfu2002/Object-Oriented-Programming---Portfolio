@@ -1,48 +1,17 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject.Foe
 {
-    public abstract class Enemy : GameObject
+    public abstract class Enemy(float health, float speed, int reward) : GameObject
     {
-        private float _initialHealth;
-        private float _health;
-        private int _reward;
-        private float _speedFactor;
-
+        private readonly float _initialHealth = health;
         private Vector2 _direction = new Vector2(0, 1);
-
         private Vector2 _targetTile;
 
-
-        public float Health
-        {
-            get { return _health; }
-            set { _health = value; }
-        }
-
-
-        public int Reward
-        {
-            get { return _reward; }
-            private set { _reward = value; }
-        }
-
-
-
-        public float SpeedFactor
-        {
-            get { return _speedFactor; }
-            set { _speedFactor = value; }
-        }
-
-
+        public float Health { get; set; } = health;
+        public int Reward { get; set; } = reward;
+        public float SpeedFactor { get; set; } = speed;
         public Vector2 Direction
         {
             get { return _direction; }
@@ -50,7 +19,7 @@ namespace CustomProject.Foe
             {
                 // Make sure direction is a unit vector
                 _direction = value / value.Length();
-                
+
             }
         }
 
@@ -60,14 +29,6 @@ namespace CustomProject.Foe
             {
                 return Direction * SpeedFactor;
             }
-        }
-
-        protected Enemy(float health, float speed, int reward)
-        {
-            _initialHealth = health;
-            _health = health;
-            _speedFactor = speed;
-            _reward = reward;
         }
 
         public void Navigate(PathFinder pathFinder)
@@ -83,7 +44,7 @@ namespace CustomProject.Foe
 
         public override void Update(float deltaTime)
         {
-            Vector2 desiredDirection = _targetTile - Location + new Vector2(Game.TILE_WIDTH, Game.TILE_WIDTH) /2;
+            Vector2 desiredDirection = _targetTile - Location + new Vector2(Game.TILE_WIDTH, Game.TILE_WIDTH) / 2;
 
             Direction = Vector2.Lerp(Direction, desiredDirection, 0.2f * deltaTime);
 
@@ -92,7 +53,7 @@ namespace CustomProject.Foe
 
         public override void GetDrawInstructions(List<DrawInstructions> instructions)
         {
-            if(Health < _initialHealth)
+            if (Health < _initialHealth)
             {
                 instructions.Add(new DrawInstructions(() =>
                 {
@@ -105,7 +66,6 @@ namespace CustomProject.Foe
             }
 
         }
-
 
         public void DealDamage(float damage)
         {

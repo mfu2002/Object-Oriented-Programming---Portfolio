@@ -1,32 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CustomProject
+﻿namespace CustomProject
 {
-    public class DrawInstructions
+    public class DrawInstructions(Action draw, int z)
     {
-		private int _z;
+        public int Z { get; set; } = z;
 
-		public int Z
-		{
-			get { return _z; }
-		}
-
-		private Action _draw;
-
-		public Action Draw
-		{
-			get { return _draw; }
-		}
-
-		public DrawInstructions(Action draw, int z)
-		{
-			_draw = draw;
-			_z = z;	
-		}
-
-	}
+        public Action Draw { get; } = draw;
+    }
 }

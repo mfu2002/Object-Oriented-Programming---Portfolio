@@ -1,9 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2_3SplashkitBasicShape
 {
@@ -67,9 +62,9 @@ namespace _2_3SplashkitBasicShape
         {
 
             if (point.X < _x) return false;
-            if (point.X > _width +_x) return false;
+            if (point.X > _width + _x) return false;
             if (point.Y < _y) return false;
-            if (point.Y > _height +_y) return false;
+            if (point.Y > _height + _y) return false;
             return true;
         }
     }

@@ -1,67 +1,41 @@
-﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using CustomProject.Foe;
+using SplashKitSDK;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using CustomProject.Foe;
-using System.Reflection.Metadata.Ecma335;
 namespace CustomProject
 {
     public class DefenceTower : GameObject
     {
-        private float _attackStrength;
         private float _cooldown;
-        private List<Enemy> _enemies;
+        private readonly List<Enemy> _enemies;
         private IEnumerable<Enemy>? targets;
-        private float _attackSpeed;
-
-        private float upgradeRangeIncrement = 1.5f;
-        private float upgradeStrengthIncrement = 10f;
-        private float upgradeSpeedIncrement = 10f;
-        private int upgradeLaserCapacityIncrement = 1;
-
-        public int UpgradeLaserCapacityIncrement { get { return upgradeLaserCapacityIncrement; } }
-        public float UpgradeSpeedIncrement { get { return upgradeSpeedIncrement; } }
-        public float UpgradeStrengthIncrement { get { return upgradeStrengthIncrement; } }
-        public float UpgradeRangeIncrement { get { return upgradeRangeIncrement; } }
 
 
-        private float _range;
+        public int UpgradeLaserCapacityIncrement { get; private set; } = 1;
+        public float UpgradeSpeedIncrement { get; private set; } = 10f;
+        public float UpgradeStrengthIncrement { get; private set; } = 10f;
+        public float UpgradeRangeIncrement { get; private set; } = 1.5f;
 
-        private int _laserCapacity;
 
-        public int LaserCapacity
+        public int LaserCapacity { get; private set; }
+
+        public bool Built { get; set; }
+
+        public float Range { get; private set; }
+
+        public float AttackStrength { get; private set; }
+
+        public float AttackSpeed { get; private set; }
+
+
+
+
+
+        public int Level { get; private set; }
+
+
+        public int UpgradeCost
         {
-            get { return _laserCapacity; }
-        }
-
-        private bool _built;
-
-        public bool Built
-        {
-            get { return _built; }
-            set { _built = value; }
-        }
-
-
-
-        public float Range
-        {
-            get { return _range; }
-        }
-
-
-        public float AttackStrength
-        {
-            get { return _attackStrength; }
-        }
-
-
-        public float AttackSpeed
-        {
-            get { return _attackSpeed; }
+            get { return Level * 30; }
         }
 
         public DefenceTower(Vector2 location, List<Enemy> enemies)
@@ -71,43 +45,29 @@ namespace CustomProject
 
         }
 
-        private int _level;
-
-        public int Level
-        {
-            get { return _level; }
-        }
-
-
-        public int UpgradeCost
-        {
-            get { return Level * 30; }
-        }
-
-
         private int Upgrade()
         {
             int cost = UpgradeCost;
-            _range += upgradeRangeIncrement;
-            _attackStrength += upgradeStrengthIncrement;
-            _attackSpeed += upgradeSpeedIncrement;
-            _laserCapacity += upgradeLaserCapacityIncrement;
-            _level += 1;
+            Range += UpgradeRangeIncrement;
+            AttackStrength += UpgradeStrengthIncrement;
+            AttackSpeed += UpgradeSpeedIncrement;
+            LaserCapacity += UpgradeLaserCapacityIncrement;
+            Level += 1;
             if (Level % 5 == 0)
             {
-                upgradeLaserCapacityIncrement = 1;
+                UpgradeLaserCapacityIncrement = 1;
 
             }
             else
             {
-                upgradeLaserCapacityIncrement = 0;
+                UpgradeLaserCapacityIncrement = 0;
             }
             if (!Built)
             {
                 Built = true;
-                upgradeRangeIncrement = 0.2f;
-                upgradeStrengthIncrement = 1f;
-                upgradeSpeedIncrement = 2;
+                UpgradeRangeIncrement = 0.2f;
+                UpgradeStrengthIncrement = 1f;
+                UpgradeSpeedIncrement = 2;
 
                 return 50;
             }
@@ -121,9 +81,7 @@ namespace CustomProject
 
             if (SplashKit.KeyTyped(KeyCode.SpaceKey))
             {
-
                 return Upgrade();
-
             }
             return 0;
         }
@@ -160,7 +118,6 @@ namespace CustomProject
                 foreach (Enemy target in targets!)
                 {
                     drawInstructions.Add(new DrawInstructions(() => SplashKit.DrawLine(Color.Red, Location.X, Location.Y, target.Location.X, target.Location.Y), 3));
-
                 }
             }
 

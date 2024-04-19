@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwinAdventureCaseStudy
+﻿namespace SwinAdventureCaseStudy
 {
     public class Bag(IEnumerable<string> ids, string name, string desc) : Item(ids, name, desc), IHaveInventory
     {
 
-		private Inventory _inventory = new Inventory();
+        private Inventory _inventory = new Inventory();
 
         public Inventory Inventory => _inventory;
 

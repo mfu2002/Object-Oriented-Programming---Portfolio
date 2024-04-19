@@ -28,7 +28,7 @@ namespace _3_1ClockUnitTests
         {
             for (int i = 0; i < 60; i++)
             {
-            _clock.Tick();
+                _clock.Tick();
             }
             Assert.That(_clock.Time, Is.EqualTo("00:01:00"));
         }

@@ -1,9 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _5_3DrawingProgram
 {
@@ -57,7 +52,7 @@ namespace _5_3DrawingProgram
         }
 
         public abstract void Draw();
-       
+
         public abstract bool IsAt(Point2D point);
 
 

@@ -1,15 +1,10 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject.Foe
 {
     public class NormalEnemy : Enemy
     {
-        internal NormalEnemy() : base(50,25,10)
+        internal NormalEnemy() : base(50, 25, 10)
         {
         }
 

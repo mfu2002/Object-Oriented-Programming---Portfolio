@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2_1NUitSetup
+﻿namespace _2_1NUitSetup
 {
     public class IntegerQueue
     {
@@ -15,13 +9,13 @@ namespace _2_1NUitSetup
             _elements = new List<int>();
         }
 
-        public int Count { get { return _elements.Count;} }
+        public int Count { get { return _elements.Count; } }
 
         public void Enqueue(int value)
         {
             _elements.Add(value);
         }
-        public int Dequeue() 
+        public int Dequeue()
         {
             int result = _elements[0];
             _elements.RemoveAt(0);

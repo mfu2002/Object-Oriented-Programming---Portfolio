@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace CustomProject
 {
     public class PathFinder
     {
-        private Vector2[,] _directions;
+        private readonly Vector2[,] _directions;
         private (int, int)? _entryPoint = null;
         private (int, int)? _exitPoint = null;
-        private int[,] _map;
+        private readonly int[,] _map;
 
         public (int, int) EntryPoint
         {
@@ -25,7 +19,7 @@ namespace CustomProject
                     {
                         if (_map[0, i] == 0)
                         {
-                            _entryPoint =(i,0);
+                            _entryPoint = (i, 0);
                             break;
                         }
                     }
@@ -71,12 +65,13 @@ namespace CustomProject
 
         public Vector2 GetDirection(int x, int y)
         {
-            return _directions[y,x];
+            return _directions[y, x];
         }
 
         public PathFinder(int[,] grid)
         {
             _map = grid;
+            _directions = new Vector2[_map.GetLength(0), _map.GetLength(1)];
             SearchPath();
         }
 
@@ -85,13 +80,14 @@ namespace CustomProject
             int rows = _map.GetLength(0);
             int columns = _map.GetLength(1);
 
+
             bool[,] visited = new bool[rows, columns];
 
             Queue<(int, int)> queue = new Queue<(int, int)>();
             queue.Enqueue(EntryPoint);
-            visited[EntryPoint.Item2,EntryPoint.Item1] = true;
+            visited[EntryPoint.Item2, EntryPoint.Item1] = true;
 
-            _directions = new Vector2[rows, columns];
+
 
             Vector2[] directions = [
                 new Vector2(-1,0),
@@ -110,7 +106,7 @@ namespace CustomProject
                     int newRow = (int)(row + direction.Y);
                     int newCol = (int)(col + direction.X);
 
-                    if(IsValidMove(_map, visited, newRow, newCol, rows, columns))
+                    if (IsValidMove(_map, visited, newRow, newCol, rows, columns))
                     {
                         visited[newRow, newCol] = true;
                         queue.Enqueue((newCol, newRow));

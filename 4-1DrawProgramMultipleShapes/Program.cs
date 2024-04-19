@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using SplashKitSDK;
 
 namespace _4_1DrawProgramMultipleShapes

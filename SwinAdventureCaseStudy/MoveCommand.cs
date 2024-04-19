@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwinAdventureCaseStudy
+﻿namespace SwinAdventureCaseStudy
 {
     public class MoveCommand() : Command(["move", "go", "head", "leave"])
     {
-        
+
 
         public override string Execute(Player p, string[] text)
         {

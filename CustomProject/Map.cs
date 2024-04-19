@@ -1,26 +1,19 @@
-﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace CustomProject
 {
     public class Map : IDraw
     {
 
-        private readonly Tile[,] _grid;
 
-        public Tile[,] Grid { get { return _grid; } }
+        public Tile[,] Grid { get; }
 
 
         public Tile? SelectedTile
         {
             get
             {
-                foreach (Tile tile in _grid)
+                foreach (Tile tile in Grid)
                 {
                     if (tile.Selected) return tile;
                 }
@@ -30,7 +23,7 @@ namespace CustomProject
 
         public Map(int[,] mapSchema)
         {
-            _grid = new Tile[mapSchema.GetLength(0), mapSchema.GetLength(1)];
+            Grid = new Tile[mapSchema.GetLength(0), mapSchema.GetLength(1)];
             ConvertSchemaToTiles(mapSchema);
         }
 

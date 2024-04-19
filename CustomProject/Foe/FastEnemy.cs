@@ -1,21 +1,18 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject.Foe
 {
     public class FastEnemy : Enemy
     {
+
+        // Internal so cannot be created outside this namespace. Should be created using a factory.
         internal FastEnemy() : base(10, 50, 20)
         {
         }
 
 
-        private Vector2 RotateVector(Vector2 pos, float angle)
+        private static Vector2 RotateVector(Vector2 pos, float angle)
         {
             float angleInRadians = MathF.PI * angle / 180;
             float cosTheta = MathF.Cos(angleInRadians);

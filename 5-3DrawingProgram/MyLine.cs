@@ -1,10 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _5_3DrawingProgram
 {
@@ -28,9 +22,9 @@ namespace _5_3DrawingProgram
         }
 
 
-        public MyLine() : this(Color.Red, 0, 0, SplashKit.ScreenWidth()/2,SplashKit.ScreenHeight() /2) 
+        public MyLine() : this(Color.Red, 0, 0, SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2)
         {
-            
+
         }
 
         public MyLine(Color color, float startX, int startY, int endX, int endY) : base(color)
@@ -40,7 +34,7 @@ namespace _5_3DrawingProgram
             EndX = endX;
             EndY = endY;
 
-                
+
         }
 
         public override void SaveTo(StreamWriter writer)
@@ -74,7 +68,7 @@ namespace _5_3DrawingProgram
         public override bool IsAt(Point2D point)
         {
             Point2D startPoint = new Point2D();
-            startPoint.X = X; 
+            startPoint.X = X;
             startPoint.Y = Y;
 
             Point2D endPoint = new Point2D();

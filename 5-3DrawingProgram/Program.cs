@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using SplashKitSDK;
 
 namespace _5_3DrawingProgram
@@ -77,7 +75,7 @@ namespace _5_3DrawingProgram
                     try
                     {
 
-                    myDrawing.Load("drawings.txt");
+                        myDrawing.Load("drawings.txt");
                     }
                     catch (Exception e)
                     {

@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-namespace SwinAdventureCaseStudy
+﻿namespace SwinAdventureCaseStudy
 {
     internal class Program
     {
@@ -23,7 +21,7 @@ namespace SwinAdventureCaseStudy
             {
                 Console.Write("Command -> ");
                 userCommandInput = Console.ReadLine();
-                if(!string.IsNullOrEmpty(userCommandInput))
+                if (!string.IsNullOrEmpty(userCommandInput))
                 {
                     Console.WriteLine(commandProcessor.Execute(player, userCommandInput.Split()));
                 }

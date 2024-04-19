@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwinAdventureCaseStudy
+﻿namespace SwinAdventureCaseStudy
 {
     public class CommandProcessor
     {
@@ -16,7 +10,7 @@ namespace SwinAdventureCaseStudy
         {
             Command? cmd = FindCommand(text[0]);
             if (cmd == null) { return $"I don't understand ${text[0]}"; }
-            return cmd.Execute(p,text);
+            return cmd.Execute(p, text);
         }
 
         public Command? FindCommand(string commandStr)

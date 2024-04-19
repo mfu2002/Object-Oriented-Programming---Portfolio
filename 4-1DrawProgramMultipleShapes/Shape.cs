@@ -1,9 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _4_1DrawProgramMultipleShapes
 {
@@ -57,7 +52,7 @@ namespace _4_1DrawProgramMultipleShapes
         }
 
         public abstract void Draw();
-       
+
         public abstract bool IsAt(Point2D point);
 
 

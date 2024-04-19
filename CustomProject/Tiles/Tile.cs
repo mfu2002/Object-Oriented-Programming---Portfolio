@@ -1,36 +1,20 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject
 {
     public abstract class Tile : GameObject
     {
-        private Color _groundColor;
-        
         private const int BORDER_WIDTH = 2;
+        private Color _groundColor;
+        abstract public bool Selectable { get; }
+        public bool Selected { get; set; }
+
         protected Tile(Color color, Vector2 loc)
         {
             _groundColor = color;
             Location = loc;
         }
-
-
-        private bool _selected;
-
-        abstract public bool Selectable { get; }
-        public bool Selected
-        {
-            get { return _selected; }
-            set { _selected = value; }
-        }
-
-
 
         public bool IsAt(Vector2 point)
         {
@@ -43,12 +27,10 @@ namespace CustomProject
 
         public override void GetDrawInstructions(List<DrawInstructions> instructions)
         {
-            
             instructions.Add(new DrawInstructions(() => SplashKit.FillRectangle(_groundColor, Location.X, Location.Y, Game.TILE_WIDTH, Game.TILE_WIDTH), 0));
             if (Selected)
             {
-                instructions.Add(new DrawInstructions(() => SplashKit.DrawRectangle(Color.Black, Location.X - BORDER_WIDTH, Location.Y - BORDER_WIDTH, Game.TILE_WIDTH + BORDER_WIDTH * 2, Game.TILE_WIDTH  +  BORDER_WIDTH * 2), 1));
-
+                instructions.Add(new DrawInstructions(() => SplashKit.DrawRectangle(Color.Black, Location.X - BORDER_WIDTH, Location.Y - BORDER_WIDTH, Game.TILE_WIDTH + BORDER_WIDTH * 2, Game.TILE_WIDTH + BORDER_WIDTH * 2), 1));
             }
         }
 

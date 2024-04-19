@@ -1,4 +1,3 @@
-using System;
 using _2_3SplashkitBasicShape;
 using SplashKitSDK;
 

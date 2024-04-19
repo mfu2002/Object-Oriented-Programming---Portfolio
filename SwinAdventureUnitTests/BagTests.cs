@@ -1,9 +1,4 @@
 ﻿using SwinAdventureCaseStudy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SwinAdventureUnitTests
 {
@@ -22,7 +17,7 @@ namespace SwinAdventureUnitTests
             ];
             foreach (Item item in _inventoryItems)
             {
-                _bag.Inventory.Put(item); 
+                _bag.Inventory.Put(item);
             }
         }
 
@@ -76,7 +71,7 @@ namespace SwinAdventureUnitTests
                 GameObject? locatedBag = _bag.Locate("bag 2");
                 Assert.That(locatedBag, Is.Not.Null);
                 Assert.That(locatedBag, Is.EqualTo(bag2));
-                
+
                 Assert.That(_bag.Locate("hammer"), Is.Not.Null);
 
                 Assert.That(_bag.Locate("Lipstick"), Is.Null);

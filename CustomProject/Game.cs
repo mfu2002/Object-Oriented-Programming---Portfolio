@@ -1,5 +1,4 @@
 ﻿using SplashKitSDK;
-using System.Collections.Generic;
 using System.Numerics;
 
 
@@ -10,23 +9,21 @@ namespace CustomProject
 
 
         public static readonly byte TILE_WIDTH = 50;
-        private Sprite _heartSprite = new Sprite("heart10x10.png");
+        private readonly Sprite _heartSprite = new Sprite("heart10x10.png");
 
 
-        private int _money = 100;
-        private readonly List<DrawInstructions> _drawInstructions = new List<DrawInstructions>();
+        private readonly List<DrawInstructions> _drawInstructions = [];
         private long _lastUpdateTime = DateTime.Now.Ticks;
-
-        private EnemyCommander _enemyGenerator;
-
-        public EnemyCommander EnemyGenerator
-        {
-            get { return _enemyGenerator; }
-            set { _enemyGenerator = value; }
-        }
-
-
         private int _lives = 3;
+
+
+        public EnemyCommander EnemyGenerator { get; set; }
+
+
+        public Map Grid { get; private set; }
+
+
+        public int Money { get; private set; } = 100;
 
         public int Lives
         {
@@ -45,31 +42,32 @@ namespace CustomProject
         }
 
 
-        private Map _map;
-
-        public Map Grid
-        {
-            get { return _map; }
-            set { _map = value; }
-        }
-
-
-        public int Money
-        {
-            get { return _money; }
-            set { _money = value; }
-        }
-
-
 
         public Game(int[,] mapSchema)
         {
 
-            _map = new Map(mapSchema);
-            _enemyGenerator = new EnemyCommander(mapSchema);
+            Grid = new Map(mapSchema);
+            EnemyGenerator = new EnemyCommander(mapSchema);
             AttachEnemiesToTower();
 
         }
+
+
+        public void Start()
+        {
+            Window window = new Window("Game", TILE_WIDTH * Grid.Grid.GetLength(1), TILE_WIDTH * Grid.Grid.GetLength(0));
+
+            do
+            {
+                SplashKit.ProcessEvents();
+                SplashKit.ClearScreen();
+                HandleKeyInput();
+                Update();
+                Render();
+                SplashKit.RefreshScreen();
+            } while (!window.CloseRequested);
+        }
+
         private void AttachEnemiesToTower()
         {
             foreach (var tile in Grid.Grid)
@@ -91,25 +89,11 @@ namespace CustomProject
 
             if (Grid.SelectedTile is ConstructableTile constructableTile)
             {
-                Money -= constructableTile.Tower.HandleUserInput(Money);
+                Money -= constructableTile.Tower!.HandleUserInput(Money);
             }
         }
 
 
-        public void Start()
-        {
-            Window window = new Window("Game", TILE_WIDTH * Grid.Grid.GetLength(1), TILE_WIDTH * Grid.Grid.GetLength(0));
-
-            do
-            {
-                SplashKit.ProcessEvents();
-                SplashKit.ClearScreen();
-                HandleKeyInput();
-                Update();
-                Render();
-                SplashKit.RefreshScreen();
-            } while (!window.CloseRequested);
-        }
 
 
         public void Update()
@@ -127,10 +111,11 @@ namespace CustomProject
         private void GetHUDInstructions(List<DrawInstructions> instructions)
         {
 
-            instructions.Add(new DrawInstructions(() => {
+            instructions.Add(new DrawInstructions(() =>
+            {
                 SplashKit.DrawText($"${Money}", Color.Black, 10, 10);
                 int horizontalOffset = 100;
-                for (int i = 0; i< Lives; i++)
+                for (int i = 0; i < Lives; i++)
                 {
                     SplashKit.DrawSprite(_heartSprite, SplashKit.ScreenWidth() - horizontalOffset, 10);
                     horizontalOffset -= 25;
@@ -158,7 +143,7 @@ namespace CustomProject
 
             if (Lives == 0)
             {
-                SplashKit.DrawText("GAME OVER", Color.Black, SplashKit.ScreenWidth()/2, SplashKit.ScreenHeight()/2);
+                SplashKit.DrawText("GAME OVER", Color.Black, SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2);
             }
         }
 

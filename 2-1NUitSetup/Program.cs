@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-           IntegerQueue myQueue = new IntegerQueue();
+            IntegerQueue myQueue = new IntegerQueue();
             myQueue.Enqueue(10);
             myQueue.Enqueue(20);
             myQueue.Enqueue(30);

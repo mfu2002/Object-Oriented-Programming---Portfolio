@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace SwinAdventureCaseStudy
 {
@@ -43,7 +39,9 @@ namespace SwinAdventureCaseStudy
             return _items.Find(item => item.AreYou(id));
         }
 
-        public string ItemList { get
+        public string ItemList
+        {
+            get
             {
                 StringBuilder sb = new StringBuilder();
                 foreach (Item item in _items)

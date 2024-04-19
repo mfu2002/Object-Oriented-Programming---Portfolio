@@ -1,9 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3_3DrawingClass
 {
@@ -69,7 +64,7 @@ namespace _3_3DrawingClass
 
         public void Draw()
         {
-            if(_selected) { DrawOutline(); }
+            if (_selected) { DrawOutline(); }
 
             SplashKit.FillRectangle(_color, _x, _y, _width, _height);
         }
@@ -77,9 +72,9 @@ namespace _3_3DrawingClass
         {
 
             if (point.X < _x) return false;
-            if (point.X > _width +_x) return false;
+            if (point.X > _width + _x) return false;
             if (point.Y < _y) return false;
-            if (point.Y > _height +_y) return false;
+            if (point.Y > _height + _y) return false;
             return true;
         }
 

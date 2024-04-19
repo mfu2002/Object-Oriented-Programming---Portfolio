@@ -1,9 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _5_3DrawingProgram
 {
@@ -32,16 +27,16 @@ namespace _5_3DrawingProgram
             Y = y;
             _width = width;
             _height = height;
-             
+
         }
         public MyRectangle() : this(Color.Green, 0f, 0f, 100, 100)
         {
-                
+
         }
 
         public override void DrawOutline()
         {
-             SplashKit.FillRectangle(Color.Black, X - 2, Y - 2, _width + 4, _height + 4); 
+            SplashKit.FillRectangle(Color.Black, X - 2, Y - 2, _width + 4, _height + 4);
         }
 
         public override void Draw()
@@ -74,7 +69,7 @@ namespace _5_3DrawingProgram
         {
             base.LoadFrom(reader);
             Width = reader.ReadInteger();
-            Height= reader.ReadInteger();
+            Height = reader.ReadInteger();
         }
 
     }

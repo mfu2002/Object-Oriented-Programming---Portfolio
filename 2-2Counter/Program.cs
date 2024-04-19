@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace _2_2CounterTask
+﻿namespace _2_2CounterTask
 {
     internal class Program
     {
@@ -14,7 +12,7 @@ namespace _2_2CounterTask
             {
                 myCounters[0].Increment();
             }
-            for (int i = 0;i <= 14;i++)
+            for (int i = 0; i <= 14; i++)
             {
                 myCounters[1].Increment();
             }

@@ -7,6 +7,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CLASS0001</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CLASS0001</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Roslyn.Analyzers" Version="1.0.3.4" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Update="heart.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -20,6 +32,14 @@
     <None Update="zlib1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\faisa\OneDrive - Swinburne University\Year 4\Semester 1\COS20007-Object Oriented Programming\Portfolio\CustomProject\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\faisa\OneDrive - Swinburne University\Year 4\Semester 1\COS20007-Object Oriented Programming\Portfolio\CustomProject\.editorconfig" />
   </ItemGroup>
 
 </Project>

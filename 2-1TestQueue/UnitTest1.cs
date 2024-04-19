@@ -19,7 +19,7 @@ namespace _2_1TestQueue
             Assert.That(myCount, Is.EqualTo(1));
 
             Assert.That(myQueue._elements.Count, Is.EqualTo(1));
-            Assert.That(myQueue._elements[0],Is.EqualTo(12345));
+            Assert.That(myQueue._elements[0], Is.EqualTo(12345));
         }
 
         [Test]

@@ -1,9 +1,4 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject.Foe
 {
@@ -17,7 +12,7 @@ namespace CustomProject.Foe
         {
             int width = 20;
             int height = 20;
-            instructions.Add(new DrawInstructions(() => SplashKit.FillRectangle(Color.Green, Location.X - width /2 , Location.Y - height /2, width, height), 2));
+            instructions.Add(new DrawInstructions(() => SplashKit.FillRectangle(Color.Green, Location.X - width / 2, Location.Y - height / 2, width, height), 2));
 
             base.GetDrawInstructions(instructions);
         }

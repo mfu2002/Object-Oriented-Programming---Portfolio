@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CustomProject.Foe
 {
-    public class WeightedEnemyFactory : IEnemyFactory
+    public class WeightedEnemyFactory(int stage, Random random) : IEnemyFactory
     {
-        private Random _random;
-        private int _stage;
-        public WeightedEnemyFactory(int stage, Random random)
-        {
-            _stage = stage;
-            _random = random;
-        }
+        private readonly Random _random = random;
+        private readonly int _stage = stage;
+
         public Enemy CreateEnemy()
         {
             int enemyLimit;

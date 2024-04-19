@@ -1,25 +1,15 @@
 ﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomProject
 {
-    public class ConstructableTile : Tile
+    public class ConstructableTile(Vector2 loc) : Tile(Color.RGBColor(58, 239, 63), loc)
     {
-        DefenceTower _tower;
-        public DefenceTower Tower
-        {
-            get { return _tower; }
-            set { _tower = value; }
-        }
 
-        public ConstructableTile(Vector2 loc) : base(Color.RGBColor(58, 239, 63), loc)
-        {
-        }
+        public DefenceTower? Tower { get; set; }
+
+        public override bool Selectable => true;
+
 
         public override void GetDrawInstructions(List<DrawInstructions> drawInstructions)
         {
@@ -50,9 +40,5 @@ namespace CustomProject
         {
             Tower?.Update(deltaTime);
         }
-
-
-        public override bool Selectable => true;
-
     }
 }

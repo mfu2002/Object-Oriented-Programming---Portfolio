@@ -11,7 +11,7 @@ namespace SwinAdventureUnitTests
         public void SetUp()
         {
             Location destination = new Location(["room"], "small room", "A small dark room, with an odd smell");
-            _path = new Path(["North-East", "NE"], "North-East","You go through a door.", destination);
+            _path = new Path(["North-East", "NE"], "North-East", "You go through a door.", destination);
         }
 
         [Test]

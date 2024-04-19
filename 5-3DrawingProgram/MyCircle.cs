@@ -4,20 +4,20 @@ namespace _5_3DrawingProgram
 {
     public class MyCircle : Shape
     {
-		private int _radius;
+        private int _radius;
 
-		public int Radius
-		{
-			get { return _radius; }
-			set { _radius = value; }
-		}
-        public MyCircle(Color color, int radius) : base(color) 
+        public int Radius
+        {
+            get { return _radius; }
+            set { _radius = value; }
+        }
+        public MyCircle(Color color, int radius) : base(color)
         {
             Radius = radius;
         }
         public MyCircle() : this(Color.Blue, 50)
         {
-            
+
         }
         public override void Draw()
         {
@@ -33,7 +33,7 @@ namespace _5_3DrawingProgram
 
         public override bool IsAt(Point2D point)
         {
-            return Math.Pow(point.X - X,2) + Math.Pow(point.Y - Y,2) <= Math.Pow(Radius,2);
+            return Math.Pow(point.X - X, 2) + Math.Pow(point.Y - Y, 2) <= Math.Pow(Radius, 2);
         }
 
         public override void SaveTo(StreamWriter writer)

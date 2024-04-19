@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwinAdventureCaseStudy
+﻿namespace SwinAdventureCaseStudy
 {
     public class Path : GameObject
     {
-        public Location Destination { get;}
+        public Location Destination { get; }
         public Path(IEnumerable<string> idents, string name, string desc, Location destination) : base(idents, name, desc)
         {
-            Destination = destination;   
+            Destination = destination;
         }
 
         public override string FullDescription => $"{base.FullDescription}\nYou have arrived in a {Destination.Name}";

@@ -1,9 +1,4 @@
 ﻿using _2_2CounterTask;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3_1_Clock
 {
@@ -16,7 +11,7 @@ namespace _3_1_Clock
         public Clock()
         {
         }
-        
+
         public void Tick()
         {
             _seconds.Increment();
@@ -33,7 +28,7 @@ namespace _3_1_Clock
                 _minutes.Reset();
             }
 
-            if ( _hours.Ticks == 24)
+            if (_hours.Ticks == 24)
             {
                 _hours.Reset();
             }
