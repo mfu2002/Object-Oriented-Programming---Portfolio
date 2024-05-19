@@ -4,11 +4,14 @@ namespace CustomProject
 {
     public class Map : IDraw
     {
-
-
+        /// <summary>
+        /// A 2D list of tiles on screen.
+        /// </summary>
         public Tile[,] Grid { get; }
 
-
+        /// <summary>
+        /// The tile that is currently selected.
+        /// </summary>
         public Tile? SelectedTile
         {
             get
@@ -21,6 +24,10 @@ namespace CustomProject
             }
         }
 
+        /// <summary>
+        /// Creates the map from the schema.
+        /// </summary>
+        /// <param name="mapSchema">2D int array of the schema</param>
         public Map(int[,] mapSchema)
         {
             Grid = new Tile[mapSchema.GetLength(0), mapSchema.GetLength(1)];
@@ -28,7 +35,10 @@ namespace CustomProject
         }
 
 
-
+        /// <summary>
+        /// Selects the tile(s) that the pt is over. 
+        /// </summary>
+        /// <param name="pt"></param>
         public void SelectTileAt(Vector2 pt)
         {
             foreach (Tile tile in Grid)
@@ -37,7 +47,11 @@ namespace CustomProject
             }
         }
 
-
+        /// <summary>
+        /// Uses the schema to create the tiles for this object. 
+        /// </summary>
+        /// <param name="mapSchema">2D int array of the schema</param>
+        /// <exception cref="Exception">Throws an exception if the schema contains invalid parameters. </exception>
         private void ConvertSchemaToTiles(int[,] mapSchema)
         {
 

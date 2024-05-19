@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4-1DrawProgramMultipleShape
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5-3DrawingProgram", "5-3DrawingProgram\5-3DrawingProgram.csproj", "{B4C6F6B6-113B-4CA6-9332-0B9D7FC298E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResearchSample", "ResearchSample\ResearchSample.csproj", "{98F8DE4E-8B16-427F-9C86-81C903FAE467}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{B4C6F6B6-113B-4CA6-9332-0B9D7FC298E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C6F6B6-113B-4CA6-9332-0B9D7FC298E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4C6F6B6-113B-4CA6-9332-0B9D7FC298E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F8DE4E-8B16-427F-9C86-81C903FAE467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F8DE4E-8B16-427F-9C86-81C903FAE467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F8DE4E-8B16-427F-9C86-81C903FAE467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F8DE4E-8B16-427F-9C86-81C903FAE467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,6 +4,7 @@ namespace CustomProject.Foe
 {
     internal class StrongEnemy : Enemy
     {
+        // Internal so cannot be created outside this namespace. Should be created using a factory.
         internal StrongEnemy() : base(150, 20, 20)
         {
         }

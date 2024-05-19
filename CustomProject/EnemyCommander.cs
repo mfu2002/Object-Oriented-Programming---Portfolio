@@ -3,15 +3,39 @@ using System.Numerics;
 
 namespace CustomProject
 {
+    /// <summary>
+    /// Responsible for coordinating the enemy with the map. 
+    /// </summary>
+    /// <param name="mapSchema">The game map layout</param>
     internal class EnemyCommander(int[,] mapSchema) : IDraw
     {
 
+        /// <summary>
+        /// Helps establish the path from the start to the end of the map.
+        /// </summary>
         private readonly PathFinder _pathFinder = new PathFinder(mapSchema);
+        /// <summary>
+        /// Game level
+        /// </summary>
         private int _stage = 0;
+        /// <summary>
+        /// cooldown between each troops
+        /// </summary>
         private float _cooldown = 5;
-        private float _delay = 10;
-        private int _toopCount = 7;
 
+        /// <summary>
+        /// reset value for the cooldown. 
+        /// </summary>
+        private float _delay = 10;
+
+        /// <summary>
+        /// Number of enemies in each troop. 
+        /// </summary>
+        private int _troopCount = 7;
+
+        /// <summary>
+        /// List of enemies currently in game. 
+        /// </summary>
         public List<Enemy> Enemies { get; } = [];
 
         public void GetDrawInstructions(List<DrawInstructions> instructions)
@@ -22,6 +46,10 @@ namespace CustomProject
             }
         }
 
+        /// <summary>
+        /// Removes dead enemies and calculates the total reward.
+        /// </summary>
+        /// <returns>The total reward for the dead enemies.</returns>
         public int CheckDeadEnemies()
         {
             int unclaimedReward = 0;
@@ -36,6 +64,10 @@ namespace CustomProject
             return unclaimedReward;
         }
 
+        /// <summary>
+        /// Checks whether any enemy has reached the last tile and removes them from the list.
+        /// </summary>
+        /// <returns>Returns the number of enemies that have reached the end</returns>
         public int CheckVictoriousEnemies()
         {
             int enemyCount = 0;
@@ -58,18 +90,16 @@ namespace CustomProject
 
         private void UpdateEnemies(float deltaTime)
         {
+
             foreach (Enemy enemy in Enemies)
             {
-                if (enemy.Health <= 0)
-                {
-                    Enemies.Remove(enemy);
-                }
-                else
+                if (enemy.Health > 0)
                 {
                     enemy.Navigate(_pathFinder);
                     enemy.Update(deltaTime);
                 }
             }
+
         }
 
         public void Update(float deltaTime)
@@ -82,22 +112,24 @@ namespace CustomProject
 
         }
 
-
+        /// <summary>
+        /// Creates the enemies on the field.
+        /// </summary>
         private void CreateEnemies()
         {
             if (_cooldown > 0 || Enemies.Count > 0) { return; }
             _stage++;
             Random random = new Random();
             IEnemyFactory enemyFactory = new WeightedEnemyFactory(_stage, random);
-            for (int i = 0; i < _toopCount; i++)
+            for (int i = 0; i < _troopCount; i++)
             {
                 Enemy basicEnemy = enemyFactory.CreateEnemy();
                 float varianceX = random.Next(80) / 100f + 0.1f;
                 float varianceY = random.Next(80) / 100f + 0.1f;
-                basicEnemy.Location = new Vector2((_pathFinder.EntryPoint.Item1 + varianceX) * Game.TILE_WIDTH, varianceY);
+                basicEnemy.Location = new Vector2((_pathFinder.EntryPoint.Item1 + varianceX) * Game.TILE_WIDTH, varianceY * Game.TILE_WIDTH);
                 Enemies.Add(basicEnemy);
             }
-            _toopCount += 7;
+            _troopCount += 7;
             _cooldown = _delay;
         }
     }

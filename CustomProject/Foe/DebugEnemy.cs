@@ -2,9 +2,13 @@
 
 namespace CustomProject.Foe
 {
+    /// <summary>
+    /// Enenmy class to be used while debugging. 
+    /// </summary>
     internal class DebugEnemy : Enemy
     {
         internal DebugEnemy() : base(10, 100, 10) { }
+
 
         public override void GetDrawInstructions(List<DrawInstructions> instructions)
         {

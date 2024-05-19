@@ -1,8 +1,16 @@
 ﻿
 namespace CustomProject.Foe
 {
+    /// <summary>
+    /// Creates a random enemy depending on the game level.
+    /// </summary>
+    /// <param name="stage">Current game level</param>
+    /// <param name="random">Random number generator</param>
     public class WeightedEnemyFactory(int stage, Random random) : IEnemyFactory
     {
+        
+        // The initialisation of random number generator is delegated to the calling class so that
+        // multiple instances of this class are not created with random number generator with the same seed.
         private readonly Random _random = random;
         private readonly int _stage = stage;
 

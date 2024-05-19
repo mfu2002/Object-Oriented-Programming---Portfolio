@@ -4,15 +4,36 @@ namespace CustomProject
 {
     public class PathFinder
     {
-        private readonly Vector2[,] _directions;
-        private (int, int)? _entryPoint = null;
-        private (int, int)? _exitPoint = null;
-        private readonly int[,] _map;
 
+        /// <summary>
+        /// Precomputed results indicating which direction the enemy should move next.
+        /// </summary>
+        private readonly Vector2[,] _directions;
+
+  
+        /// <summary>
+        /// <see cref="EntryPoint"/>
+        /// </summary>
+        private (int, int)? _entryPoint = null;
+
+        /// <summary>
+        /// <see cref="ExitPoint"/>
+        /// </summary>
+
+        private (int, int)? _exitPoint = null;
+
+        /// <summary>
+        /// Map schema. 
+        /// </summary>
+        private readonly int[,] _map;
+        /// <summary>
+        /// Entry point of the map.
+        /// </summary>
         public (int, int) EntryPoint
         {
             get
-            {
+            {   
+                // Lazy loading of the entry point. 
                 if (_entryPoint == null)
                 {
                     for (int i = 0; i < _map.GetLength(1); i++)
@@ -32,10 +53,14 @@ namespace CustomProject
             }
         }
 
+        /// <summary>
+        /// Last point on the path. 
+        /// </summary>
         public (int, int) ExitPoint
         {
             get
             {
+                // Lazy loading of the exit point. 
                 if (_exitPoint == null)
                 {
                     int lastRow = _map.GetLength(0) - 1;
@@ -55,6 +80,17 @@ namespace CustomProject
                 return ((int, int))_exitPoint;
             }
         }
+
+        /// <summary>
+        /// Checks whether there is a tile in that direction that is a path and has not already been visited. 
+        /// </summary>
+        /// <param name="grid">The Map schema</param>
+        /// <param name="visited">Boolean 2D array of the tiles already visited</param>
+        /// <param name="row">target row</param>
+        /// <param name="col">target column</param>
+        /// <param name="total_rows">Total number of rows in grid</param>
+        /// <param name="total_columns">Total Number of columns in grid</param>
+        /// <returns></returns>
         private static bool IsValidMove(int[,] grid, bool[,] visited, int row, int col, int total_rows, int total_columns)
         {
             return row >= 0 && row < total_rows     // within x bounds
@@ -75,6 +111,9 @@ namespace CustomProject
             SearchPath();
         }
 
+        /// <summary>
+        /// Uses an breadth first search algorithm to find the path from the start of the map to the end. 
+        /// </summary>
         private void SearchPath()
         {
             int rows = _map.GetLength(0);

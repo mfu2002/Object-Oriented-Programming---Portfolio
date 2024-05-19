@@ -13,6 +13,7 @@ namespace CustomProject
             }
             else
             {
+                // default schema for the map.
                 mapSchema = new int[,]{
                     { 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1 },
                     { 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},

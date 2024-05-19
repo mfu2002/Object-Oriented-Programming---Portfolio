@@ -6,14 +6,29 @@ namespace CustomProject
 {
     internal class Game
     {
-
-
+        /// <summary>
+        /// Size of each tile.
+        /// </summary>
         public static readonly byte TILE_WIDTH = 50;
+
+        /// <summary>
+        /// readonly reference to the heart sprite.
+        /// </summary>
         private readonly Sprite _heartSprite = new Sprite("heart10x10.png");
 
-
+        /// <summary>
+        /// Used for rendering.
+        /// </summary>
         private readonly List<DrawInstructions> _drawInstructions = [];
+
+        /// <summary>
+        /// Keeps track of when the last game cycle was run. 
+        /// </summary>
         private long _lastUpdateTime = DateTime.Now.Ticks;
+
+        /// <summary>
+        /// <see cref="Lives"/>
+        /// </summary>
         private int _lives = 3;
 
 
@@ -22,14 +37,20 @@ namespace CustomProject
 
         public Map Grid { get; private set; }
 
-
+        /// <summary>
+        /// Current money of the player. 
+        /// </summary>
         public int Money { get; private set; } = 100;
 
+        /// <summary>
+        /// Player lives.
+        /// </summary>
         public int Lives
         {
             get { return _lives; }
             set
             {
+                // Ensure the lives does not go in negative. 
                 if (value < 0)
                 {
                     _lives = 0;
@@ -53,6 +74,9 @@ namespace CustomProject
         }
 
 
+        /// <summary>
+        /// Initialises the game components and starts the game loop. 
+        /// </summary>
         public void Start()
         {
             Window window = new Window("Game", TILE_WIDTH * Grid.Grid.GetLength(1), TILE_WIDTH * Grid.Grid.GetLength(0));
@@ -68,6 +92,10 @@ namespace CustomProject
             } while (!window.CloseRequested);
         }
 
+
+        /// <summary>
+        /// Creates a DefenceTower on each constructable tile and attaches the reference to the enemy list to it. 
+        /// </summary>
         private void AttachEnemiesToTower()
         {
             foreach (var tile in Grid.Grid)
@@ -80,6 +108,9 @@ namespace CustomProject
         }
 
 
+        /// <summary>
+        /// Handle user mouse and keyboard input. 
+        /// </summary>
         public void HandleKeyInput()
         {
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
@@ -108,6 +139,10 @@ namespace CustomProject
 
         }
 
+        /// <summary>
+        /// Gets instructions for the HUD components like the money, lives and stats. 
+        /// </summary>
+        /// <param name="instructions"></param>
         private void GetHUDInstructions(List<DrawInstructions> instructions)
         {
 
@@ -124,6 +159,9 @@ namespace CustomProject
             , 10));
         }
 
+        /// <summary>
+        /// Handles the rendering of the objects using the z-level
+        /// </summary>
         public void Render()
         {
 

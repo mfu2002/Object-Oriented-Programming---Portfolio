@@ -5,17 +5,41 @@ namespace CustomProject
 {
     public abstract class Tile : GameObject
     {
+        // Border width to indicate the tile is selected
         private const int BORDER_WIDTH = 2;
+
+        /// <summary>
+        /// Background colour
+        /// </summary>
         private Color _groundColor;
+
+        /// <summary>
+        /// Identifies whether the player is allowed to select this tile.
+        /// </summary>
         abstract public bool Selectable { get; }
+
+        /// <summary>
+        /// Identifies whether the tile is currently selected
+        /// </summary>
         public bool Selected { get; set; }
 
+
+        /// <summary>
+        /// The ground of the playing field. 
+        /// </summary>
+        /// <param name="color">background colour</param>
+        /// <param name="loc">location of the top left corner of the tile</param>
         protected Tile(Color color, Vector2 loc)
         {
             _groundColor = color;
             Location = loc;
         }
 
+        /// <summary>
+        /// Checks whether the point is within the tile bounds.
+        /// </summary>
+        /// <param name="point">The point vector in question</param>
+        /// <returns>Whether the point is within bounds</returns>
         public bool IsAt(Vector2 point)
         {
             if (point.X < Location.X) return false;

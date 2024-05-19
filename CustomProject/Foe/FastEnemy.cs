@@ -12,6 +12,12 @@ namespace CustomProject.Foe
         }
 
 
+        /// <summary>
+        /// Performs a rotation matrix on 2d vector. 
+        /// </summary>
+        /// <param name="pos">2D vector that needs to be rotated.</param>
+        /// <param name="angle">Rotation angle in degrees.</param>
+        /// <returns></returns>
         private static Vector2 RotateVector(Vector2 pos, float angle)
         {
             float angleInRadians = MathF.PI * angle / 180;
@@ -24,9 +30,10 @@ namespace CustomProject.Foe
 
             return new Vector2(newX, newY);
         }
+
         public override void GetDrawInstructions(List<DrawInstructions> instructions)
         {
-
+            // Creates the triangle by finding the Vertices of it. 
             Vector2 head = Direction;
             Vector2 tail1 = RotateVector(head, 120);
             Vector2 tail2 = RotateVector(head, -120);
